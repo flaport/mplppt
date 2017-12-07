@@ -1,4 +1,4 @@
-<!-- Start Rect [1pt=12700] insert after </p:spTree> -->
+<!-- Start Rect [1pt=12700] insert after </p:grpSpPr> -->
 <p:sp>
     <p:nvSpPr>
         <p:cNvPr id="2" name="Rect1"/>
@@ -7,18 +7,18 @@
     </p:nvSpPr>
     <p:spPr>
         <a:xfrm>
-            <a:off x="{x}" y="{y}"/>
-            <a:ext cx="{cx}" cy="{cy}"/>
+            <a:off x="12700" y="12700"/>
+            <a:ext cx="1270000" cy="1270000"/>
         </a:xfrm>
         <a:prstGeom prst="rect">
             <a:avLst/>
         </a:prstGeom>
         <a:solidFill>
-            <a:srgbClr val="{bg}"/>
+            <a:srgbClr val="eeeeee"/>
         </a:solidFill>
-        <a:ln w="{lw}">
+        <a:ln w="12700">
             <a:solidFill>
-                <a:srgbClr val="{lc}"/>
+                <a:srgbClr val="000000"/>
             </a:solidFill>
         </a:ln>
     </p:spPr>
