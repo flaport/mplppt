@@ -1,0 +1,26 @@
+<!-- Start Rect [1pt=12700] -->
+<p:sp>
+    <p:nvSpPr>
+        <p:cNvPr id="2" name="Rect1"/>
+        <p:cNvSpPr/>
+        <p:nvPr/>
+    </p:nvSpPr>
+    <p:spPr>
+        <a:xfrm>
+            <a:off x={x} y={y}/>
+            <a:ext cx={cx} cy={cy}/>
+        </a:xfrm>
+        <a:prstGeom prst="rect">
+            <a:avLst/>
+        </a:prstGeom>
+        <a:solidFill>
+            <a:srgbClr val={bg}/>
+        </a:solidFill>
+        <a:ln w={lw}>
+            <a:solidFill>
+                <a:srgbClr val={lc}/>
+            </a:solidFill>
+        </a:ln>
+    </p:spPr>
+</p:sp>
+<!-- End Rect [1pt=12700] -->
