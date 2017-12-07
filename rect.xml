@@ -7,18 +7,18 @@
     </p:nvSpPr>
     <p:spPr>
         <a:xfrm>
-            <a:off x={x} y={y}/>
-            <a:ext cx={cx} cy={cy}/>
+            <a:off x="{x}" y="{y}"/>
+            <a:ext cx="{cx}" cy="{cy}"/>
         </a:xfrm>
         <a:prstGeom prst="rect">
             <a:avLst/>
         </a:prstGeom>
         <a:solidFill>
-            <a:srgbClr val={bg}/>
+            <a:srgbClr val="{bg}"/>
         </a:solidFill>
-        <a:ln w={lw}>
+        <a:ln w="{lw}">
             <a:solidFill>
-                <a:srgbClr val={lc}/>
+                <a:srgbClr val="{lc}"/>
             </a:solidFill>
         </a:ln>
     </p:spPr>
