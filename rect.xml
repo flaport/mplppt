@@ -13,6 +13,7 @@
         <a:prstGeom prst="rect">
             <a:avLst/>
         </a:prstGeom>
+        <!-- <a:noFill/> -->
         <a:solidFill>
             <a:srgbClr val="eeeeee"/>
         </a:solidFill>
