@@ -1,7 +1,7 @@
 <!-- Start Line [1pt=12700] insert after </p:grpSpPr> -->
 <p:cxnSp>
 <p:nvCxnSpPr>
-<p:cNvPr id="6" name="Straight Connector 5">
+<p:cNvPr id="6" name="Line">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
 <a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{DD9EBCDA-1ADD-428D-8CC5-4622F3135E3C}"/>
