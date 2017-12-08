@@ -18,7 +18,7 @@
         </a:prstGeom>
         <a:ln w="{lw}">
             <a:solidFill>
-                <a:srgbClr val="{color}"/>
+                <a:srgbClr val="{ec}"/>
             </a:solidFill>
         </a:ln>
     </p:spPr>

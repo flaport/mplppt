@@ -2,5 +2,7 @@ import sys; sys.path.append('..')
 
 import mplppt
 
-rect = mplppt.ppt.Shape()
-rect.save('rectangle.pptx')
+rect = mplppt.ppt.Rectangle()
+shape = mplppt.ppt.Shape()
+ppt = rect + shape
+ppt.save('test.pptx')

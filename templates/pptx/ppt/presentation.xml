@@ -6,7 +6,7 @@
 <p:sldIdLst>
 <p:sldId id="256" r:id="rId2"/>
 </p:sldIdLst>
-<p:sldSz cx="12192000" cy="6858000"/>
+<p:sldSz cx="{cx}" cy="{cy}"/>
 <p:notesSz cx="6858000" cy="9144000"/>
 <p:defaultTextStyle>
 <a:defPPr>
