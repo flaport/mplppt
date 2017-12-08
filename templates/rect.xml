@@ -1,27 +1,21 @@
 <!-- Start Rect [1pt=12700] insert after </p:grpSpPr> -->
 <p:sp>
     <p:nvSpPr>
-        <p:cNvPr id="1" name="Rect"/>
+        <p:cNvPr id="1" name="{name}"/>
         <p:cNvSpPr/>
         <p:nvPr/>
     </p:nvSpPr>
     <p:spPr>
         <a:xfrm>
-            <a:off x="12700" y="12700"/>
-            <a:ext cx="1270000" cy="1270000"/>
+            <a:off x="{x}" y="{y}"/>
+            <a:ext cx="{cx}" cy="{cy}"/>
         </a:xfrm>
         <a:prstGeom prst="rect">
             <a:avLst/>
         </a:prstGeom>
-        <!-- <a:noFill/> -->
-        <a:solidFill>
-            <a:srgbClr val="eeeeee"/>
-        </a:solidFill>
-        <a:ln w="12700">
-            <!-- <a:noFill/> -->
-            <a:solidFill>
-                <a:srgbClr val="000000"/>
-            </a:solidFill>
+        {bgcolorspec}
+        <a:ln w="{lw}">
+            {colorspec}
         </a:ln>
     </p:spPr>
 </p:sp>

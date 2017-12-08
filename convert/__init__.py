@@ -3,18 +3,7 @@ import sys
 import shutil
 import zipfile
 
-from contextlib import contextmanager
-
-@contextmanager
-def chdir(path):
-  ''' 
-  Handy working directory changing context manager that returns to 
-  original folder if something goes wrong 
-  '''
-  old_dir = os.getcwd()
-  os.chdir(path)
-  yield
-  os.chdir(old_dir)
+from ..utils import chdir
 
 def dir2pptx(dirname, target=None):
   ''' Create ppt file from folder with right ppt structure '''
