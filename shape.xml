@@ -20,6 +20,7 @@
                     <a:lnTo>
                         <a:pt x="2540000" y="0"/>
                     </a:lnTo>
+                    <!-- <a:close/> -->
                 </a:path>
             </a:pathLst>
         </a:custGeom>
