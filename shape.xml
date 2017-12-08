@@ -1,0 +1,37 @@
+<p:sp>
+    <p:nvSpPr>
+        <p:cNvPr id="1" name="Shape"/>
+            <p:cNvSpPr/>
+        <p:nvPr/>
+    </p:nvSpPr>
+    <p:spPr>
+        <a:xfrm>
+            <a:off x="1270000" y="1270000"/>
+        </a:xfrm>
+        <a:custGeom>
+            <a:pathLst>
+                <a:path>
+                    <a:moveTo>
+                        <a:pt x="0" y="0"/>
+                    </a:moveTo>
+                    <a:lnTo>
+                        <a:pt x="1270000" y="-1270000"/>
+                    </a:lnTo>
+                    <a:lnTo>
+                        <a:pt x="2540000" y="0"/>
+                    </a:lnTo>
+                </a:path>
+            </a:pathLst>
+        </a:custGeom>
+        <!-- <a:noFill/> -->
+        <a:solidFill>
+            <a:srgbClr val="eeeeee"/>
+        </a:solidFill>
+        <a:ln>
+            <!-- <a:noFill/> -->
+            <a:solidFill>
+                <a:srgbClr val="000000"/>
+            </a:solidFill>
+        </a:ln>
+    </p:spPr>
+</p:sp>
