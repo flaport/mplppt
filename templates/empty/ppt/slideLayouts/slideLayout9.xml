@@ -20,7 +20,7 @@
 <p:cNvPr id="2" name="Title 1">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{B57670BF-C48F-45AD-9589-A27285CE2828}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{30653935-410D-447C-A099-F0062A00E7E8}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -57,7 +57,7 @@
 <p:cNvPr id="3" name="Picture Placeholder 2">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{032ACD18-BBC7-40B7-99DD-C26263860A96}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{2A5EBA24-4ACB-491D-9A3D-6D1E618CB117}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -124,7 +124,7 @@
 <p:cNvPr id="4" name="Text Placeholder 3">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{7F0E1D38-A232-43E5-8C22-EEB36E10F8A9}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{21688658-1491-495F-A210-C1EF62617274}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -195,7 +195,7 @@
 <p:cNvPr id="5" name="Date Placeholder 4">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{CCA574D5-61D6-408B-A5A5-8A84884AAD24}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{16311208-3690-4C0A-BC49-C6E79CA16B36}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -211,9 +211,9 @@
 <a:bodyPr/>
 <a:lstStyle/>
 <a:p>
-<a:fld id="{36053D15-DEAE-41F9-AFC8-523191D4FDFA}" type="datetimeFigureOut">
+<a:fld id="{73569C8A-8A91-414B-A657-8FB23FC126B5}" type="datetimeFigureOut">
 <a:rPr lang="en-US" smtClean="0"/>
-<a:t>12/7/2017</a:t>
+<a:t>12/8/2017</a:t>
 </a:fld>
 <a:endParaRPr lang="en-US"/>
 </a:p>
@@ -224,7 +224,7 @@
 <p:cNvPr id="6" name="Footer Placeholder 5">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{0BD6FD49-6A89-4D65-AD95-0E4FD62F5298}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{A22031F8-988A-4FCF-816F-0BC4F36960F1}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -249,7 +249,7 @@
 <p:cNvPr id="7" name="Slide Number Placeholder 6">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{183466FF-44A3-4FEE-A346-67188DF621CB}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{ACBC2A60-FB9D-47FC-AF13-E647B2B6C7D4}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -265,7 +265,7 @@
 <a:bodyPr/>
 <a:lstStyle/>
 <a:p>
-<a:fld id="{B3211E5A-3CB3-484F-85BC-EF477439802C}" type="slidenum">
+<a:fld id="{15A9E0AB-F235-42E3-A3D0-B21313A53B98}" type="slidenum">
 <a:rPr lang="en-US" smtClean="0"/>
 <a:t>‹#›</a:t>
 </a:fld>
@@ -276,7 +276,7 @@
 </p:spTree>
 <p:extLst>
 <p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
-<p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="468585152"/>
+<p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="269662763"/>
 </p:ext>
 </p:extLst>
 </p:cSld>

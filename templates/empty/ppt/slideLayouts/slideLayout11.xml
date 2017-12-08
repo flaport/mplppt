@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" type="vertTx" preserve="1">
-<p:cSld name="Title and Vertical Text">
+<p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" type="vertTitleAndTx" preserve="1">
+<p:cSld name="Vertical Title and Text">
 <p:spTree>
 <p:nvGrpSpPr>
 <p:cNvPr id="1" name=""/>
@@ -17,10 +17,10 @@
 </p:grpSpPr>
 <p:sp>
 <p:nvSpPr>
-<p:cNvPr id="2" name="Title 1">
+<p:cNvPr id="2" name="Vertical Title 1">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{59BBB1AB-9677-4402-AB3D-6B53CA9E1056}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{58F73354-0049-4F61-AC43-3443DBA7EE0F}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -28,12 +28,17 @@
 <a:spLocks noGrp="1"/>
 </p:cNvSpPr>
 <p:nvPr>
-<p:ph type="title"/>
+<p:ph type="title" orient="vert"/>
 </p:nvPr>
 </p:nvSpPr>
-<p:spPr/>
+<p:spPr>
+<a:xfrm>
+<a:off x="8724900" y="365125"/>
+<a:ext cx="2628900" cy="5811838"/>
+</a:xfrm>
+</p:spPr>
 <p:txBody>
-<a:bodyPr/>
+<a:bodyPr vert="eaVert"/>
 <a:lstStyle/>
 <a:p>
 <a:r>
@@ -48,7 +53,7 @@
 <p:cNvPr id="3" name="Vertical Text Placeholder 2">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{94997397-6294-4CBC-934A-1A7D4052FB6D}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{A9B9746D-8EB6-4633-A924-A313EA7A6B0D}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -59,7 +64,12 @@
 <p:ph type="body" orient="vert" idx="1"/>
 </p:nvPr>
 </p:nvSpPr>
-<p:spPr/>
+<p:spPr>
+<a:xfrm>
+<a:off x="838200" y="365125"/>
+<a:ext cx="7734300" cy="5811838"/>
+</a:xfrm>
+</p:spPr>
 <p:txBody>
 <a:bodyPr vert="eaVert"/>
 <a:lstStyle/>
@@ -105,7 +115,7 @@
 <p:cNvPr id="4" name="Date Placeholder 3">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{141C6951-273B-4C2C-99E6-29BB999655FB}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{07630C88-13B9-4AAE-A81E-5C1276DE4417}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -121,9 +131,9 @@
 <a:bodyPr/>
 <a:lstStyle/>
 <a:p>
-<a:fld id="{36053D15-DEAE-41F9-AFC8-523191D4FDFA}" type="datetimeFigureOut">
+<a:fld id="{73569C8A-8A91-414B-A657-8FB23FC126B5}" type="datetimeFigureOut">
 <a:rPr lang="en-US" smtClean="0"/>
-<a:t>12/7/2017</a:t>
+<a:t>12/8/2017</a:t>
 </a:fld>
 <a:endParaRPr lang="en-US"/>
 </a:p>
@@ -134,7 +144,7 @@
 <p:cNvPr id="5" name="Footer Placeholder 4">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{AA8144AF-CAE2-4913-999B-8DCEAE7707CB}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{AE6182B2-C111-4760-89B9-CF04E5DDCB2A}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -159,7 +169,7 @@
 <p:cNvPr id="6" name="Slide Number Placeholder 5">
 <a:extLst>
 <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{C4BA8118-03CF-4389-A43A-14EA2B693AE4}"/>
+<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{6716C393-1AF7-48CC-B23D-0E7AB2BDA7FD}"/>
 </a:ext>
 </a:extLst>
 </p:cNvPr>
@@ -175,7 +185,7 @@
 <a:bodyPr/>
 <a:lstStyle/>
 <a:p>
-<a:fld id="{B3211E5A-3CB3-484F-85BC-EF477439802C}" type="slidenum">
+<a:fld id="{15A9E0AB-F235-42E3-A3D0-B21313A53B98}" type="slidenum">
 <a:rPr lang="en-US" smtClean="0"/>
 <a:t>‹#›</a:t>
 </a:fld>
@@ -186,7 +196,7 @@
 </p:spTree>
 <p:extLst>
 <p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
-<p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="2767827735"/>
+<p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="3775093247"/>
 </p:ext>
 </p:extLst>
 </p:cSld>

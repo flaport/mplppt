@@ -8,10 +8,10 @@
 <p:cSldViewPr snapToGrid="0">
 <p:cViewPr varScale="1">
 <p:scale>
-<a:sx n="109" d="100"/>
-<a:sy n="109" d="100"/>
+<a:sx n="72" d="100"/>
+<a:sy n="72" d="100"/>
 </p:scale>
-<p:origin x="636" y="114"/>
+<p:origin x="816" y="66"/>
 </p:cViewPr>
 <p:guideLst/>
 </p:cSldViewPr>
