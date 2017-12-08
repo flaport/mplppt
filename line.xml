@@ -1,31 +1,26 @@
 <!-- Start Line [1pt=12700] insert after </p:grpSpPr> -->
 <p:cxnSp>
-<p:nvCxnSpPr>
-<p:cNvPr id="6" name="Line">
-<a:extLst>
-<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
-<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{DD9EBCDA-1ADD-428D-8CC5-4622F3135E3C}"/>
-</a:ext>
-</a:extLst>
-</p:cNvPr>
-<p:cNvCxnSpPr>
-<a:cxnSpLocks/>
-</p:cNvCxnSpPr>
-<p:nvPr/>
-</p:nvCxnSpPr>
-<p:spPr>
-<a:xfrm flipV="1">
-<a:off x="1512277" y="1002323"/>
-<a:ext cx="2532185" cy="835269"/>
-</a:xfrm>
-<a:prstGeom prst="line">
-<a:avLst/>
-</a:prstGeom>
-<a:ln w="127000">
-    <a:solidFill>
-        <a:srgbClr val="eeeeee"/>
-    </a:solidFill>
-</a:ln>
-</p:spPr>
+        <p:nvCxnSpPr>
+            <p:cNvPr id="1" name="Line">
+                </p:cNvPr>
+                <p:cNvCxnSpPr>
+                <a:cxnSpLocks/>
+                </p:cNvCxnSpPr>
+            <p:nvPr/>
+        </p:nvCxnSpPr>
+    <p:spPr>
+        <a:xfrm>
+            <a:off x="1512277" y="1002323"/>
+            <a:ext cx="2532185" cy="835269"/>
+        </a:xfrm>
+        <a:prstGeom prst="line">
+            <a:avLst/>
+        </a:prstGeom>
+        <a:ln w="127000">
+            <a:solidFill>
+                <a:srgbClr val="eeeeee"/>
+            </a:solidFill>
+        </a:ln>
+    </p:spPr>
 </p:cxnSp>
 <!-- End Line -->
