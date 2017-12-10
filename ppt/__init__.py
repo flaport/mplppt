@@ -3,7 +3,7 @@ import shutil
 import random
 import numpy as np
 from scipy.interpolate import interp1d
-from ..templates import PPTXPATH, LINE, RECT, SHAPE, TEXT
+from ..templates import PPTXPATH, LINE, RECT, LINE, TEXT
 from ..convert import dir2pptx
 from ..utils import chdir, tempdir, random_name, color2hex
 from ..utils import POINTSPERINCH, PIXELSPERPOINT, PIXELSPERINCH, ALIGNMENTS
@@ -341,9 +341,9 @@ class Text(Object):
         )
         return xml
 
-class Shape(Object):
-    ''' A custom shape '''
-    def __init__(self, name='Shape', shape=[(0,0),(0,100),(50,0)], ec='000000', fc='eeeeee', closed=False, slidesize=(6,4)):
+class Line(Object):
+    ''' A custom LINE '''
+    def __init__(self, name='Line', shape=[(0,0),(0,100),(50,0)], ec='000000', fc='eeeeee', closed=False, slidesize=(6,4)):
         Object.__init__(self, name=name, slidesize=slidesize)
         self.shape = np.array(shape)
         self.ec = ec
@@ -351,7 +351,7 @@ class Shape(Object):
         self.closed = closed
         self.cx, self.cy = np.max(shape, axis=0) - np.min(shape, axis=0)
         self.x, self.y = np.min(shape, axis=0)
-        self._xml = SHAPE
+        self._xml = LINE
     
     def get_adjusted_shape(self):
         shape = self.shape.copy()

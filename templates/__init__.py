@@ -8,5 +8,4 @@ PPTXPATH = os.path.join(TEMPLATESPATH,'pptx')
 with chdir(TEMPLATESPATH):
   RECT = get_content('rect.xml')
   LINE = get_content('line.xml')
-  SHAPE = get_content('shape.xml')
   TEXT = get_content('text.xml')
