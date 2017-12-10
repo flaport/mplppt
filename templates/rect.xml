@@ -1,4 +1,4 @@
-<!-- Start Rect [1pt=12700] insert after </p:grpSpPr> -->
+<!-- start rect -->
 <p:sp>
     <p:nvSpPr>
         <p:cNvPr id="1" name="{name}"/>
@@ -19,4 +19,4 @@
         </a:ln>
     </p:spPr>
 </p:sp>
-<!-- End Rect [1pt=12700] -->
+<!-- end rect -->

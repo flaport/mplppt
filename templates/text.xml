@@ -1,0 +1,18 @@
+
+<!-- start text [to be added to a rectangle] -->
+<p:txBody>
+<a:bodyPr lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr"/>
+    <a:p>
+        <a:pPr algn="ctr"/>
+        <a:r>
+            <a:rPr lang="en-US" sz="{size}" dirty="0">
+                <a:solidFill>
+                    <a:srgbClr val="{color}"/>
+                </a:solidFill>
+                <a:latin typeface="{font}"/>
+            </a:rPr>
+            <a:t>{text}</a:t>
+        </a:r>
+    </a:p>
+</p:txBody>
+<!-- end text -->

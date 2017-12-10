@@ -1,3 +1,4 @@
+<!-- start shape -->
 <p:sp>
     <p:nvSpPr>
         <p:cNvPr id="1" name="{name}"/>
@@ -7,10 +8,11 @@
     <p:spPr>
         <a:xfrm>
             <a:off x="{x}" y="{y}"/>
+            <a:ext cx="{cx}" cy="{cy}"/>
         </a:xfrm>
         <a:custGeom>
             <a:pathLst>
-                <a:path>
+                <a:path w="{cx}" h="{cy}">
                     {shapespec}
                 </a:path>
             </a:pathLst>
@@ -21,3 +23,4 @@
         </a:ln>
     </p:spPr>
 </p:sp>
+<!-- end shape -->
