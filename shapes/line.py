@@ -18,7 +18,7 @@ from ..utils.constants import PIXELSPERPOINT
 ##########
 
 class Line(Object):
-    ''' A custom LINE '''
+    ''' A Line '''
     def __init__(self, name='Line', shape=[(0,0),(0,100),(50,0)], lw=1, ec='000000', fc=None, closed=False, slidesize=(6,4)):
         Object.__init__(self, name=name, slidesize=slidesize)
         self.shape = np.array(shape)
@@ -26,11 +26,33 @@ class Line(Object):
         self.ec = ec
         self.fc = fc
         self.closed = closed
-        self.cx, self.cy = np.max(shape, axis=0) - np.min(shape, axis=0)
-        self.x, self.y = np.min(shape, axis=0)
         self._xml = LINE
+
+    @property
+    def x(self):
+        ''' X location of the upper left corner of the shape '''
+        return np.min(self.shape, axis=0)[0]
+
+    @property
+    def y(self):
+        ''' Y location of the upper left corner of the shape '''
+        return np.min(self.shape, axis=0)[1]
+
+    @property
+    def cx(self):
+        ''' Total width of the shape '''
+        return (np.max(self.shape, axis=0) - np.min(self.shape, axis=0))[0]
+
+    @property
+    def cy(self):
+        ''' Total height of the shape '''
+        return (np.max(self.shape, axis=0) - np.min(self.shape, axis=0))[1]
     
     def get_adjusted_shape(self):
+        '''
+        To draw a resize box around the shape, we need to give the coordinates of the
+        shape relative to the the upper left corner of the shape
+        '''
         shape = self.shape.copy()
         shape[:,0] -= self.x
         shape[:,1] -= self.y
@@ -38,9 +60,18 @@ class Line(Object):
 
     @classmethod
     def from_mpl(cls, mpl_line):
+        '''
+        Create a line starting from a matplotlib Line2D object
+
+        TODO: The code below gets repeated a lot over the different shapes.
+              Create a method in the Object class that extrapolates the
+              x and y values.
+        '''
+        # Get slidesize from matplotlib figure
         slidesize = (mpl_line.figure.get_figwidth(), mpl_line.figure.get_figheight())
         f = cls._mpl_shrink_factor
 
+        # Translate plot data to locations on slide
         slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH
         slide_x1 = slide_x0 + f*slidesize[0]*POINTSPERINCH
         plot_x0, plot_x1 = mpl_line.axes.get_xlim()
@@ -58,18 +89,22 @@ class Line(Object):
         py = sy/my
 
         x = interp1d([plot_x0,plot_x1],[slide_x0,slide_x1], fill_value='extrapolate')(mpl_line._x)
+        y = interp1d([plot_y0,plot_y1],[slide_y0,slide_y1], fill_value='extrapolate')(mpl_line._y)
+
+        # HACK: If an object is partly outside the plotting area, we map the values outside to the
+        # margin area (over which the (white?) rectangles of the Canvas will later be drawn)
         x[x<0.5*slide_x0] = 0.5*slide_x0
         x[x>slide_x1+0.5*slide_x0] = slide_x1+0.5*slide_x0
-
-        y = interp1d([plot_y0,plot_y1],[slide_y0,slide_y1], fill_value='extrapolate')(mpl_line._y)
         y[y<0.5*slide_y1] = 0.5*slide_y1
         y[y>slide_y0+0.5*slide_y1] = slide_y0+0.5*slide_y1
 
         shape = np.stack((x,y), axis=1)
 
+        # If object is completely outside plotting area, then we shouldnt show it at all:
         if ((y < slide_y1) | (y > slide_y0) | (x < slide_x0) | (x > slide_x1)).all():
             return None
  
+        # Create Line
         line = cls(
             name='mplline_' + random_name(5),
             shape=shape,
@@ -79,10 +114,10 @@ class Line(Object):
             closed = False,
             slidesize=slidesize,
         )
-
         return line
         
     def xml(self):
+        ''' Get Xml Representation of object '''
         xml = self._xml.format(
             name = self.name,
             x = int(self.x*PIXELSPERPOINT)+1,
@@ -97,6 +132,9 @@ class Line(Object):
         return xml
 
     def shapespec(self, shape, closed):
+        '''
+        Get the Xml representation of just the shape.
+        '''
         # check if shape is empty
         if len(shape) == 0:
             return ''

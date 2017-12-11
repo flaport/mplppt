@@ -3,11 +3,11 @@
 #############
 
 import os
-from ..utils import chdir
-from ..utils import tempdir
-from ..convert import dir2pptx
-from ..templates import PPTXPATH
-from ..utils.constants import PIXELSPERINCH
+from .utils import chdir
+from .utils import tempdir
+from .convert import dir2pptx
+from .templates import PPTXPATH
+from .utils.constants import PIXELSPERINCH
 
 
 #############

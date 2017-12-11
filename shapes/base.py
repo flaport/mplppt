@@ -2,7 +2,7 @@
 ## Imports ##
 #############
 
-from .ppt import new
+from ..ppt import new
 
 
 ###################
@@ -11,8 +11,10 @@ from .ppt import new
 
 class Object(object):
     ''' An abstract powerpoint object '''
-
-    _mpl_shrink_factor = 0.9 # scaling factor for matplotlib figures
+    
+    # scaling factor for matplotlib figures
+    # if this factor is 1, the whole slide will be covered by the plot
+    _mpl_shrink_factor = 0.9
 
     def __init__(self, name='', slidesize=(6,4)):
         '''

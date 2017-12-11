@@ -25,3 +25,10 @@ from .shapes import Rectangle
 ########################
 
 from .save import savefig
+
+
+####################
+## New powerpoint ##
+####################
+
+from .ppt import new

@@ -29,9 +29,18 @@ class Rectangle(Object):
 
     @classmethod
     def from_mpl(cls, mpl_rect):
+        '''
+        Create a rectangle starting from a matplotlib Rectangle object
+
+        TODO: The code below gets repeated a lot over the different shapes.
+              Create a method in the Object class that extrapolates the
+              x and y values.
+        '''
+        # Get slidesize from matplotlib figure
         slidesize = (mpl_rect.figure.get_figwidth(), mpl_rect.figure.get_figheight())
         f = cls._mpl_shrink_factor
 
+        # Translate plot data to locations on slide
         slide_x0 = 0.5*(1-f)*slidesize[0]
         slide_x1 = slide_x0 + f*slidesize[0]
         plot_x0, plot_x1 = mpl_rect.axes.get_xlim()
@@ -52,6 +61,15 @@ class Rectangle(Object):
             y += cy
             cy*=-1
 
+        # HACK: If an object is partly outside the plotting area, we map the values outside to the
+        # margin area (over which the (white?) rectangles of the Canvas will later be drawn)
+        # TODO: Implement this
+     
+        
+        # If object is completely outside plotting area, then we shouldnt show it at all:
+        # TODO: Implement this check
+
+        # Create Rectangle
         rect = cls(
             name='mplrect_' + random_name(5),
             x=x*POINTSPERINCH,
@@ -66,6 +84,7 @@ class Rectangle(Object):
         return rect
 
     def xml(self):
+        ''' Get xml representation of the rectangle '''
         xml = self._xml.format(
             name = self.name,
             x  = int(self.x*PIXELSPERPOINT)+1,

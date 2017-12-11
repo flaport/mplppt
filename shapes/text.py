@@ -26,8 +26,8 @@ class Text(Object):
     def __init__(self, text='', x=0, y=0, cx=None, cy=None, size=18, font='Arial', color='000000', ha='c', va='c', slidesize=(6,4)):
         Object.__init__(self, name='', slidesize=slidesize)
         self.text = text
-        self.x = x
-        self.y = y
+        self._x = x
+        self._y = y
         self.cx = cx
         self.cy = cy
         self.ha = ALIGNMENTS[ha]
@@ -37,20 +37,38 @@ class Text(Object):
         self.font = font
         self._xml = RECTANGLE.replace('</p:sp>','\n'+TEXT+'\n</p:sp>\n')
 
+    @property
+    def x(self):
+        ''' change the x location of the text according to its alignment specification '''
         if self.ha == 'c':
-            self.x -= 0.5*self.cx
-        elif self.ha == 'r':
-            self.x -= self.cx
+            return self._x - 0.5*self.cx
+        if self.ha == 'r':
+            return self._x - self.cx
+        return self._x
+
+    @property
+    def y(self):
+        ''' change the y location of the text according to its alignment specification '''
         if self.va == 'c':
-            self.y -= 0.5*self.cy
-        elif self.va == 'b':
-            self.y -= self.cy
+            return self._y - 0.5*self.cy
+        if self.va == 'b':
+            return self._y - self.cy
+        return self._y
 
     @classmethod
     def from_mpl(cls, mpl_text):
+        '''
+        Create a text box starting from a matplotlib Text object
+
+        TODO: The code below gets repeated a lot over the different shapes.
+              Create a method in the Object class that extrapolates the
+              x and y values.
+        '''
+        # Get slidesize from matplotlib figure
         slidesize = (mpl_text.figure.get_figwidth(), mpl_text.figure.get_figheight())
         f = cls._mpl_shrink_factor
 
+        # Translate text location data to locations on slide
         slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH
         slide_x1 = slide_x0 + f*slidesize[0]*POINTSPERINCH
         plot_x0, plot_x1 = mpl_text.axes.get_xlim()
@@ -61,16 +79,25 @@ class Text(Object):
 
         x = interp1d([plot_x0,plot_x1],[slide_x0,slide_x1], fill_value='extrapolate')(mpl_text._x)
         y = interp1d([plot_y0,plot_y1],[slide_y0,slide_y1], fill_value='extrapolate')(mpl_text._y)
+        
+        # HACK: If an object is partly outside the plotting area, we map the values outside to the
+        # margin area (over which the (white?) rectangles of the Canvas will later be drawn)
+        # TODO: Implement this
+        
+        # If object is completely outside plotting area, then we shouldnt show it at all:
+        # TODO: Implement this check
 
+        # Get texbox size
         bbox = np.array(mpl_text.get_window_extent(renderer=mpl_text.figure.canvas.get_renderer()))
-        cx, cy = bbox[1] - bbox[0]
+        cx, cy = 1.1*(bbox[1] - bbox[0])
 
+        # Create Textbox
         text = cls(
             text = mpl_text._text,
             x = x,
             y = y,
-            cx = 1.1*abs(cx),
-            cy = 1.1*abs(cy),
+            cx = abs(cx),
+            cy = abs(cy),
             size = mpl_text.get_fontsize(),
             font = mpl_text.get_fontname(),
             color = mpl_text.get_color(),
@@ -82,14 +109,19 @@ class Text(Object):
         return text
 
     def xml(self):
+        ''' Get xml representation of the text '''
         if self.text.replace(' ','').replace('\n','') == '':
-            return ''
+            return '' # Return empty string, if no characters are written
+        
+        # Get width and height of textbox
         cx = self.cx
         if cx is None:
             cx = self.size*max([len(line) for line in self.text.splitlines()])
         cy = self.cy
         if cy is None:
             cy = self.size+2
+
+        # Return xml representation
         xml = self._xml.format(
             text = self.text,
             size = int(self.size*100),
