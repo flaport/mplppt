@@ -19,9 +19,10 @@ from ..utils.constants import PIXELSPERPOINT
 
 class Line(Object):
     ''' A custom LINE '''
-    def __init__(self, name='Line', shape=[(0,0),(0,100),(50,0)], ec='000000', fc='eeeeee', closed=False, slidesize=(6,4)):
+    def __init__(self, name='Line', shape=[(0,0),(0,100),(50,0)], lw=1, ec='000000', fc=None, closed=False, slidesize=(6,4)):
         Object.__init__(self, name=name, slidesize=slidesize)
         self.shape = np.array(shape)
+        self.lw = lw
         self.ec = ec
         self.fc = fc
         self.closed = closed
@@ -72,6 +73,7 @@ class Line(Object):
         line = cls(
             name='mplline_' + random_name(5),
             shape=shape,
+            lw = mpl_line._linewidth,
             ec = color2hex(mpl_line.get_color()),
             fc = None,
             closed = False,
@@ -87,6 +89,7 @@ class Line(Object):
             y = int(self.y*PIXELSPERPOINT)+1,
             cx = int(self.cx*PIXELSPERPOINT),
             cy = int(self.cy*PIXELSPERPOINT),
+            lw = int(self.lw*PIXELSPERPOINT),
             shapespec = self.shapespec(self.get_adjusted_shape(), self.closed),
             colorspec = self.colorspec(self.ec),
             bgcolorspec = self.colorspec(self.fc),

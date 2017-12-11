@@ -18,7 +18,7 @@
             </a:pathLst>
         </a:custGeom>
         {bgcolorspec}
-        <a:ln>
+        <a:ln w="{lw}">
             {colorspec}
         </a:ln>
     </p:spPr>

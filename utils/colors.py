@@ -19,11 +19,13 @@ def rgb2hex(tup, max=1):
     color += c
   return color.upper()
 
-def rgba2hex(tup, max=1):
-  tup = [int(c*255/max) for c in tup]
-  if tup[-1] == 0:
-    return None
-  return rgb2hex(tup[:-1], max=255)
+def rgba2hex(tup, max=1, keep_alpha=True):
+  alpha = tup[-1]
+  color = rgb2hex(tup[:-1])
+  if keep_alpha:
+    return color, alpha
+  else:
+    return color
 
 def color2hex(color):    
   if type(color) is str:
@@ -42,4 +44,6 @@ def color2hex(color):
       return rgba2hex(color)
     if len(color) == 3:
       return rgb2hex(color)
+    if len(color) == 2:
+      return color
   raise ValueError('invalid color '+str(color))
