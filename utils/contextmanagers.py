@@ -42,6 +42,3 @@ def tempdir(source=None):
     yield dirname
   finally:
     shutil.rmtree(dirname)
-
-
-

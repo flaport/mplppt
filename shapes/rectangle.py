@@ -64,7 +64,6 @@ class Rectangle(Object):
         # HACK: If an object is partly outside the plotting area, we map the values outside to the
         # margin area (over which the (white?) rectangles of the Canvas will later be drawn)
         # TODO: Implement this
-     
         
         # If object is completely outside plotting area, then we shouldnt show it at all:
         # TODO: Implement this check

@@ -8,3 +8,4 @@ from .line import Line
 from .text import Text
 from .canvas import Canvas
 from .polygon import Polygon
+from .image import Image

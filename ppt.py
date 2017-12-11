@@ -3,6 +3,7 @@
 #############
 
 import os
+import shutil
 from .utils import chdir
 from .utils import tempdir
 from .convert import dir2pptx
@@ -14,7 +15,7 @@ from .utils.constants import PIXELSPERINCH
 ## New PPT ##
 #############
 
-def new(filename, xml=None, slidesize=(6,4)):
+def new(filename, xml=None, rels=None, slidesize=(6,4)):
     ''' Creates a new blank powerpoint with a single slide '''
     # check filename
     if filename.endswith('.pptx'):
@@ -53,6 +54,20 @@ def new(filename, xml=None, slidesize=(6,4)):
                 content = file.read()
             content = content.replace('{objects}',xml)
             with open(slidename,'w') as file:
+                file.write(content)
+
+            # Insert custom relationships (for images)
+            relsname = os.path.join(tempdirname, 'ppt/slides/_rels/slide1.xml.rels')
+            with open(relsname, 'r') as file:
+                content = file.read()
+            relationships = ''
+            for rel, source, target in rels:
+                shutil.copy(source, os.path.join(tempdirname,'ppt/media', target))
+                relationships += rel
+            content = content.format(
+                relationships = relationships
+            )
+            with open(relsname, 'w') as file:
                 file.write(content)
             
             # Convert temporary folder to pptx

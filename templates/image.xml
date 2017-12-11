@@ -1,0 +1,28 @@
+<p:pic>
+<p:nvPicPr>
+<p:cNvPr id="1" name="{name}">
+<a:extLst/>
+</p:cNvPr>
+<p:cNvPicPr>
+<a:picLocks noChangeAspect="1"/>
+</p:cNvPicPr>
+<p:nvPr/>
+</p:nvPicPr>
+<p:blipFill>
+<a:blip r:embed="{id}">
+<a:extLst/>
+</a:blip>
+<a:stretch>
+<a:fillRect/>
+</a:stretch>
+</p:blipFill>
+<p:spPr>
+<a:xfrm>
+<a:off x="{x}" y="{y}"/>
+<a:ext cx="{cx}" cy="{cy}"/>
+</a:xfrm>
+<a:prstGeom prst="rect">
+<a:avLst/>
+</a:prstGeom>
+</p:spPr>
+</p:pic>

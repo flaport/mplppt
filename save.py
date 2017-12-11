@@ -28,12 +28,6 @@ def savefig(filename, fig=None, canvas=dict(lw=0.8, ec='000000', fc='ffffff', ax
   # Get figure to save
   if fig is None:
     fig = gcf()
-
-  # [HACK] Axis needs to be visualized by plotting the figure first. We choose png export:
-  if canvas['axis']:
-    fn = random_name() + '.png'
-    _savefig(fn)
-    os.remove(fn)
     
   # Create ppt group
   p = Group(objects=[])
@@ -58,6 +52,11 @@ def savefig(filename, fig=None, canvas=dict(lw=0.8, ec='000000', fc='ffffff', ax
   # create a canvas
   # TODO: Create this with less parameters
   if canvas:
+    # [HACK] Axis needs to be visualized by plotting the figure first. We choose png export:
+    if canvas['axis']:
+      fn = random_name() + '.png'
+      _savefig(fn)
+      os.remove(fn)
     canvas = Canvas.from_mpl(fig.axes[0], **canvas)
     p += canvas
   

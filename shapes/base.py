@@ -26,13 +26,17 @@ class Object(object):
         self._xml = ''
         self.slidesize = slidesize
 
+    def rels(self):
+        ''' Get relationship representation of current object '''
+        return []
+
     def xml(self):
         ''' Get xml representation of current object '''
         return self._xml
 
     def save(self, filename):
         ''' Save current object as powerpoint presentation '''
-        new(filename, xml=self.xml(), slidesize=self.slidesize)
+        new(filename, xml=self.xml(), rels=self.rels(), slidesize=self.slidesize)
 
     def colorspec(self, color):
         '''
@@ -77,6 +81,12 @@ class Group(Object):
     def __init__(self, name='ppt', objects=[], slidesize=(6,4)):
         Object.__init__(self, name=name, slidesize=slidesize)
         self.objects = objects
+
+    def rels(self):
+        rels = []
+        for obj in self.objects:
+            rels += obj.rels()
+        return rels
 
     def xml(self):
         ''' The xml representation of a group consists of the total string of the seperate objects '''

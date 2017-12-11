@@ -22,3 +22,4 @@ with chdir(TEMPLATESPATH):
     LINE = get_content('line.xml')
     TEXT = get_content('text.xml')
     RECTANGLE = get_content('rectangle.xml')
+    IMAGE = get_content('image.xml')
