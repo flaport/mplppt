@@ -27,6 +27,10 @@ def new(filename, xml=None, rels=None, slidesize=(6,4)):
     # xml should be a string
     if xml is None:
         xml = ''
+
+    # rels should be a list:
+    if rels is None:
+        rels = []
     
     # Split path into folder and filename
     splitted_path = os.path.split(filename)

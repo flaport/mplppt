@@ -2,7 +2,7 @@
 ## Imports ##
 #############
 
-from .string import *
 from .colors import *
+from .strings import *
 from .constants import *
 from .contextmanagers import *

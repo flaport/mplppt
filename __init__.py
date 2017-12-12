@@ -31,4 +31,4 @@ from .save import savefig
 ## New powerpoint ##
 ####################
 
-from .ppt import new
+from .new import new

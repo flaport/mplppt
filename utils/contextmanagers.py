@@ -6,7 +6,7 @@ import os
 import shutil
 from contextlib import contextmanager
 
-from .string import random_name
+from .strings import random_name
 
 
 ######################

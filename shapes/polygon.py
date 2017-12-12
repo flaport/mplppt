@@ -7,7 +7,7 @@ from scipy.interpolate import interp1d
 
 from .line import Line
 from ..utils.colors import color2hex
-from ..utils.string import random_name
+from ..utils.strings import random_name
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT
 

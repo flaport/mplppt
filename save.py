@@ -15,7 +15,7 @@ from .shapes import Group
 from .shapes import Canvas
 from .shapes import Polygon
 from .shapes import Rectangle
-from .utils.string import random_name
+from .utils.strings import random_name
 
 
 ########################

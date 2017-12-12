@@ -2,7 +2,7 @@
 ## Imports ##
 #############
 
-from ..ppt import new
+from ..new import new
 
 
 ###################

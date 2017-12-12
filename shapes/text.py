@@ -9,7 +9,7 @@ from .base import Object
 from ..templates import TEXT
 from ..templates import RECTANGLE
 from ..utils.colors import color2hex
-from ..utils.string import random_name
+from ..utils.strings import random_name
 from ..utils.constants import ALIGNMENTS
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT

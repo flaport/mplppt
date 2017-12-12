@@ -9,7 +9,7 @@ from scipy.interpolate import interp2d
 
 from .base import Object
 from ..templates import IMAGE
-from ..utils.string import random_name
+from ..utils.strings import random_name
 from ..utils.contextmanagers import chdir
 from ..utils.constants import PIXELSPERPOINT
 from ..utils.constants import POINTSPERINCH
