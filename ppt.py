@@ -4,10 +4,13 @@
 
 import os
 import shutil
-from .utils import chdir
-from .utils import tempdir
+from matplotlib.pyplot import imsave
+
+
 from .convert import dir2pptx
 from .templates import PPTXPATH
+from .utils.contextmanagers import chdir
+from .utils.contextmanagers import tempdir
 from .utils.constants import PIXELSPERINCH
 
 
@@ -61,8 +64,8 @@ def new(filename, xml=None, rels=None, slidesize=(6,4)):
             with open(relsname, 'r') as file:
                 content = file.read()
             relationships = ''
-            for rel, source, target in rels:
-                shutil.copy(source, os.path.join(tempdirname,'ppt/media', target))
+            for rel, array, target in rels:
+                imsave(os.path.join(tempdirname,'ppt/media', target), array)
                 relationships += rel
             content = content.format(
                 relationships = relationships

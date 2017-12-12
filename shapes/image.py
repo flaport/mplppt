@@ -2,13 +2,17 @@
 ## Imports ##
 #############
 
+import os
+import numpy as np
 from matplotlib.pyplot import imread, imsave
+from scipy.interpolate import interp2d
 
 from .base import Object
 from ..templates import IMAGE
 from ..utils.string import random_name
 from ..utils.contextmanagers import chdir
 from ..utils.constants import PIXELSPERPOINT
+from ..utils.constants import POINTSPERINCH
 
 
 ###############
@@ -21,7 +25,7 @@ class Image(Object):
         name = '.'.join(source.split('.')[:-1]) if name=='' else name
         Object.__init__(self, name=name, slidesize=slidesize)
         self.array = imread(source)
-        self.id = 'lv6c7'#random_name(5)
+        self.id = random_name(5)
         self.source = source
         self.target = self.name + '_' + self.id + '.' + source.split('.')[-1]
         self.x = x
@@ -38,9 +42,7 @@ class Image(Object):
             id = self.id,
             target = self.target,
         )
-        print(self.source)
-        print(self.target)
-        return [(rels, self.source, self.target)]
+        return [(rels, self.array, self.target)]
 
     def xml(self):
         ''' Get xml representation of the rectangle '''
@@ -53,3 +55,66 @@ class Image(Object):
             id = self.id,
         )
         return xml
+
+
+class Mesh(Image):
+    ''' Matplotlib QuadMesh (plt.pcolormesh) '''
+
+    @classmethod
+    def from_mpl(cls, mpl_mesh):
+        xlim = mpl_mesh.axes.get_xlim()
+        ylim = mpl_mesh.axes.get_ylim()
+        X = mpl_mesh._coordinates[:-1,:-1,0]
+        Y = mpl_mesh._coordinates[:-1,:-1,1]
+        xmin, xmax = max(np.min(X), min(xlim)), min(np.max(X), max(xlim))
+        ymin, ymax = max(np.min(Y), min(ylim)), min(np.max(Y), max(ylim))
+
+        Z = mpl_mesh._A.reshape(mpl_mesh._meshHeight, mpl_mesh._meshWidth).data
+
+
+
+        # Get slidesize from matplotlib figure
+        slidesize = (mpl_mesh.figure.get_figwidth(), mpl_mesh.figure.get_figheight())
+        f = cls._mpl_shrink_factor
+
+        # Translate plot data to locations on slide
+        slide_x0 = 0.5*(1-f)*slidesize[0]
+        slide_x1 = slide_x0 + f*slidesize[0]
+        plot_x0, plot_x1 = mpl_mesh.axes.get_xlim()
+        mx = (slide_x0-slide_x1)/(plot_x0 - plot_x1)
+        x = mx*(xmin-plot_x0) + slide_x0
+        cx = mx*(xmax-xmin)
+        if cx < 0:
+            x += cx
+            cx *= -1
+
+        slide_y1 = 0.5*(1-f)*slidesize[1]
+        slide_y0 = slide_y1+f*slidesize[1]
+        plot_y0, plot_y1 = mpl_mesh.axes.get_ylim()
+        my = (slide_y0-slide_y1)/(plot_y0 - plot_y1)
+        y = my*(ymin-plot_y0) + slide_y0
+        cy = my*(ymax-ymin)
+        if cy < 0:
+            y += cy
+            cy*=-1
+
+        id = random_name(5)
+        _x,_y = np.where(((X>xmin) & (X<xmax) & (Y>ymin) & (Y<ymax)))
+        imsave(id+'.png', Z[max(_x):min(_x):-1,min(_y):max(_y)])
+
+        print(x,y)
+        print(cx, cy)
+
+        mesh = cls(
+            source = id+'.png',
+            name=id,
+            x=x*POINTSPERINCH,
+            y=y*POINTSPERINCH,
+            cx=cx*POINTSPERINCH,
+            cy=cy*POINTSPERINCH,
+            slidesize=slidesize,
+        )
+        os.remove(id+'.png')
+        mesh.id = id
+        mesh.target = id + '.png'
+        return mesh

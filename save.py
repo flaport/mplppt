@@ -10,6 +10,7 @@ from matplotlib.pyplot import savefig as _savefig
 
 from .shapes import Line
 from .shapes import Text
+from .shapes import Mesh
 from .shapes import Group
 from .shapes import Canvas
 from .shapes import Polygon
@@ -48,6 +49,9 @@ def savefig(filename, fig=None, canvas=dict(lw=0.8, ec='000000', fc='ffffff', ax
       # convert text
       if type(obj) is mpl.text.Text:
         p += Text.from_mpl(obj)
+      # convert pcolormesh
+      if type(obj) is mpl.collections.QuadMesh:
+        p += Mesh.from_mpl(obj)
         
   # create a canvas
   # TODO: Create this with less parameters
@@ -82,4 +86,3 @@ def loadpicklefig(filename):
     fig, canvas = pickle.load(file, encoding='latin1')
   fig.canvas = canvas
   return fig
-
