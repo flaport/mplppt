@@ -22,13 +22,11 @@ class Spine(Line):
         '''
         Create a line starting from a matplotlib Spine object
         '''
-        print(mpl_spine)
         # Get slidesize from matplotlib figure
         slidesize = (mpl_spine.figure.get_figwidth(), mpl_spine.figure.get_figheight())
 
         # Get shape
         shape = np.array(mpl_spine.get_extents())
-        #print(shape)
 
         # Create Line
         spine = cls(
@@ -40,5 +38,4 @@ class Spine(Line):
             closed = False,
             slidesize=slidesize,
         )
-        #print(spine.xml())
         return spine

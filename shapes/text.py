@@ -88,8 +88,6 @@ class Text(Object):
         bbox = np.array(mpl_text.get_window_extent(renderer=mpl_text.figure.canvas.get_renderer()))
         cx, cy = 1.1*(bbox[1] - bbox[0])
 
-        print(mpl_text.get_window_extent(renderer=mpl_text.figure.canvas.get_renderer()))
-
         # Create Textbox
         text = cls(
             text = mpl_text._text,

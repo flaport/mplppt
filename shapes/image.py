@@ -99,9 +99,6 @@ class Mesh(Image):
         _x,_y = np.where(((X>xmin) & (X<xmax) & (Y>ymin) & (Y<ymax)))
         imsave(id+'.png', Z[max(_x):min(_x):-1,min(_y):max(_y)])
 
-        print(x,y)
-        print(cx, cy)
-
         mesh = cls(
             source = id+'.png',
             name=id,
