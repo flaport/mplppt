@@ -6,11 +6,11 @@ import os
 import matplotlib as mpl
 from matplotlib.pyplot import gcf
 from matplotlib.pyplot import findobj
-from matplotlib.pyplot import savefig as _savefig
 
 from .shapes import Line
 from .shapes import Text
 from .shapes import Mesh
+from .shapes import Spine
 from .shapes import Group
 from .shapes import Canvas
 from .shapes import Polygon
@@ -24,7 +24,7 @@ from .utils.strings import random_name
 
 # This is te function this repository is all about
 
-def savefig(filename, fig=None, canvas=dict(lw=0.8, ec='000000', fc='ffffff', axis=True)):
+def savefig(filename, fig=None, axis=True):
   ''' Export a matplotlib figure to a pptx file '''
   # Get figure to save
   if fig is None:
@@ -55,14 +55,8 @@ def savefig(filename, fig=None, canvas=dict(lw=0.8, ec='000000', fc='ffffff', ax
         
   # create a canvas
   # TODO: Create this with less parameters
-  if canvas:
-    # [HACK] Axis needs to be visualized by plotting the figure first. We choose png export:
-    if canvas['axis']:
-      fn = random_name() + '.png'
-      _savefig(fn)
-      os.remove(fn)
-    canvas = Canvas.from_mpl(fig.axes[0], **canvas)
-    p += canvas
+  canvas = Canvas.from_mpl(fig.axes[0], axis=axis)
+  p += canvas
   
   # save powerpoint group
   p.save(filename)

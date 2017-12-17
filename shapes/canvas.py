@@ -10,6 +10,8 @@ from .text import Text
 from .base import Group
 from .rectangle import Rectangle
 from ..utils.constants import POINTSPERINCH
+from ..utils.mpl import get_plotting_area
+from ..utils.colors import color2hex
 
 
 ############
@@ -17,7 +19,7 @@ from ..utils.constants import POINTSPERINCH
 ############
 
 class Canvas(Group):
-    def __init__(self, lw=0.8, ec='000000', fc='ffffff', slidesize=(6,4)):
+    def __init__(self, x, y, cx, cy, lw=0.8, ec='000000', fc='ffffff', slidesize=(6,4)):
         '''
         A canvas draws a rectangle around the plot with linewidth lw and edgecolor ec.
         It also hides the parts of the plot that are outside the drawing region
@@ -28,12 +30,6 @@ class Canvas(Group):
         now, this translation is only partly implemented. (This is why
         .from_mpl accepts some keyword arguments.)
         '''
-
-        f = self._mpl_shrink_factor
-        x = 0.5*(1-f)*slidesize[0]
-        y = 0.5*(1-f)*slidesize[1]
-        cx = f*slidesize[0]
-        cy = f*slidesize[1]
 
         # Rectangle around the plot
         self.rect = Rectangle(
@@ -100,10 +96,22 @@ class Canvas(Group):
         # Get slidesize from matplotlib figure
         slidesize = (mpl_ax.figure.get_figwidth(), mpl_ax.figure.get_figheight())
 
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_ax.figure)
+
+        x = min(slide_x0, slide_x1)/POINTSPERINCH
+        y = min(slide_y0, slide_y1)/POINTSPERINCH
+        cx = abs(slide_x0-slide_x1)/POINTSPERINCH
+        cy = abs(slide_y0-slide_y1)/POINTSPERINCH
+
         # Initialize Canvas
         canvas = cls(
+            x=x,
+            y=y,
+            cx=cx,
+            cy=cy,
             lw = lw,
-            ec = ec,
+            ec = ec if axis else color2hex((0.,0.,0.,0.)),
             fc = fc,
             slidesize = slidesize,
         )
@@ -121,7 +129,7 @@ class Canvas(Group):
 
                 mpl_text.axes = mpl_ax
                 mpl_text._text = mpl_text._text.replace('\u2212','-') #'\u2212 yields errors while writing to file
-                mpl_text._y = ylim[0]
+                mpl_text._y = ylim[0] - 0.01*(ylim[1]-ylim[0])
                 canvas = canvas + Text.from_mpl(mpl_text)
 
                 mpl_text.axes = old_axes
@@ -139,7 +147,7 @@ class Canvas(Group):
 
                 mpl_text.axes = mpl_ax
                 mpl_text._text = mpl_text._text.replace('\u2212','-') #'\u2212 yields errors while writing to file
-                mpl_text._x = xlim[0]
+                mpl_text._x = xlim[0] - 0.01*(xlim[1]-xlim[0])
                 canvas = canvas + Text.from_mpl(mpl_text)
 
                 mpl_text.axes = old_axes

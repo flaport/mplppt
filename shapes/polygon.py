@@ -10,6 +10,7 @@ from ..utils.colors import color2hex
 from ..utils.strings import random_name
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT
+from ..utils.mpl import get_plotting_area
 
 
 #############
@@ -33,7 +34,6 @@ class Polygon(Line):
         '''
         # Get slidesize from matplotlib figure
         slidesize = (mpl_poly.figure.get_figwidth(), mpl_poly.figure.get_figheight())
-        f = cls._mpl_shrink_factor
 
         # Translate plot data to locations on slide
         slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH

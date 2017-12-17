@@ -11,6 +11,7 @@ from ..utils.colors import color2hex
 from ..utils.strings import random_name
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT
+from ..utils.mpl import get_plotting_area
 
 
 ##########
@@ -71,13 +72,11 @@ class Line(Object):
         slidesize = (mpl_line.figure.get_figwidth(), mpl_line.figure.get_figheight())
         f = cls._mpl_shrink_factor
 
-        # Translate plot data to locations on slide
-        slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH
-        slide_x1 = slide_x0 + f*slidesize[0]*POINTSPERINCH
-        plot_x0, plot_x1 = mpl_line.axes.get_xlim()
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_line.figure)
 
-        slide_y1 = 0.5*(1-f)*slidesize[1]*POINTSPERINCH
-        slide_y0 = slide_y1+f*slidesize[1]*POINTSPERINCH
+        # Translate plot data to locations on slide
+        plot_x0, plot_x1 = mpl_line.axes.get_xlim()
         plot_y0, plot_y1 = mpl_line.axes.get_ylim()
         
         mx = (slide_x1-slide_x0)/(plot_x1-plot_x0)

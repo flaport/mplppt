@@ -8,6 +8,7 @@ from ..utils.colors import color2hex
 from ..utils.strings import random_name
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT
+from ..utils.mpl import get_plotting_area
 
 
 ###############
@@ -38,11 +39,11 @@ class Rectangle(Object):
         '''
         # Get slidesize from matplotlib figure
         slidesize = (mpl_rect.figure.get_figwidth(), mpl_rect.figure.get_figheight())
-        f = cls._mpl_shrink_factor
+
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_rect.figure)
 
         # Translate plot data to locations on slide
-        slide_x0 = 0.5*(1-f)*slidesize[0]
-        slide_x1 = slide_x0 + f*slidesize[0]
         plot_x0, plot_x1 = mpl_rect.axes.get_xlim()
         mx = (slide_x0-slide_x1)/(plot_x0 - plot_x1)
         x = mx*(mpl_rect._x-plot_x0) + slide_x0
@@ -51,8 +52,6 @@ class Rectangle(Object):
             x += cx
             cx *= -1
 
-        slide_y1 = 0.5*(1-f)*slidesize[1]
-        slide_y0 = slide_y1+f*slidesize[1]
         plot_y0, plot_y1 = mpl_rect.axes.get_ylim()
         my = (slide_y0-slide_y1)/(plot_y0 - plot_y1)
         y = my*(mpl_rect._y-plot_y0) + slide_y0
@@ -71,10 +70,10 @@ class Rectangle(Object):
         # Create Rectangle
         rect = cls(
             name='mplrect_' + random_name(5),
-            x=x*POINTSPERINCH,
-            y=y*POINTSPERINCH,
-            cx=cx*POINTSPERINCH,
-            cy=cy*POINTSPERINCH,
+            x=x,
+            y=y,
+            cx=cx,
+            cy=cy,
             lw = mpl_rect._linewidth,
             ec = color2hex(mpl_rect._edgecolor),
             fc = color2hex(mpl_rect._facecolor),

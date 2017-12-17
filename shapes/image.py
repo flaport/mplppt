@@ -13,6 +13,7 @@ from ..utils.strings import random_name
 from ..utils.contextmanagers import chdir
 from ..utils.constants import PIXELSPERPOINT
 from ..utils.constants import POINTSPERINCH
+from ..utils.mpl import get_plotting_area
 
 
 ###############
@@ -71,15 +72,13 @@ class Mesh(Image):
 
         Z = mpl_mesh._A.reshape(mpl_mesh._meshHeight, mpl_mesh._meshWidth).data
 
-
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_mesh.figure)
 
         # Get slidesize from matplotlib figure
         slidesize = (mpl_mesh.figure.get_figwidth(), mpl_mesh.figure.get_figheight())
-        f = cls._mpl_shrink_factor
 
         # Translate plot data to locations on slide
-        slide_x0 = 0.5*(1-f)*slidesize[0]
-        slide_x1 = slide_x0 + f*slidesize[0]
         plot_x0, plot_x1 = mpl_mesh.axes.get_xlim()
         mx = (slide_x0-slide_x1)/(plot_x0 - plot_x1)
         x = mx*(xmin-plot_x0) + slide_x0
@@ -88,8 +87,6 @@ class Mesh(Image):
             x += cx
             cx *= -1
 
-        slide_y1 = 0.5*(1-f)*slidesize[1]
-        slide_y0 = slide_y1+f*slidesize[1]
         plot_y0, plot_y1 = mpl_mesh.axes.get_ylim()
         my = (slide_y0-slide_y1)/(plot_y0 - plot_y1)
         y = my*(ymin-plot_y0) + slide_y0
@@ -108,10 +105,10 @@ class Mesh(Image):
         mesh = cls(
             source = id+'.png',
             name=id,
-            x=x*POINTSPERINCH,
-            y=y*POINTSPERINCH,
-            cx=cx*POINTSPERINCH,
-            cy=cy*POINTSPERINCH,
+            x=x,
+            y=y,
+            cx=cx,
+            cy=cy,
             slidesize=slidesize,
         )
         os.remove(id+'.png')

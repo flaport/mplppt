@@ -10,3 +10,4 @@ from .canvas import Canvas
 from .polygon import Polygon
 from .image import Image
 from .image import Mesh
+from .spine import Spine

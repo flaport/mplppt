@@ -13,8 +13,7 @@ from ..utils.strings import random_name
 from ..utils.constants import ALIGNMENTS
 from ..utils.constants import POINTSPERINCH
 from ..utils.constants import PIXELSPERPOINT
-
-from .base import Object
+from ..utils.mpl import get_plotting_area
 
 
 ##########
@@ -68,13 +67,11 @@ class Text(Object):
         slidesize = (mpl_text.figure.get_figwidth(), mpl_text.figure.get_figheight())
         f = cls._mpl_shrink_factor
 
-        # Translate text location data to locations on slide
-        slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH
-        slide_x1 = slide_x0 + f*slidesize[0]*POINTSPERINCH
-        plot_x0, plot_x1 = mpl_text.axes.get_xlim()
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_text.figure)
 
-        slide_y1 = 0.5*(1-f)*slidesize[1]*POINTSPERINCH
-        slide_y0 = slide_y1+f*slidesize[1]*POINTSPERINCH
+        # Translate text location data to locations on slide
+        plot_x0, plot_x1 = mpl_text.axes.get_xlim()
         plot_y0, plot_y1 = mpl_text.axes.get_ylim()
 
         x = interp1d([plot_x0,plot_x1],[slide_x0,slide_x1], fill_value='extrapolate')(mpl_text._x)
@@ -90,6 +87,8 @@ class Text(Object):
         # Get texbox size
         bbox = np.array(mpl_text.get_window_extent(renderer=mpl_text.figure.canvas.get_renderer()))
         cx, cy = 1.1*(bbox[1] - bbox[0])
+
+        print(mpl_text.get_window_extent(renderer=mpl_text.figure.canvas.get_renderer()))
 
         # Create Textbox
         text = cls(
