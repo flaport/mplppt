@@ -32,3 +32,11 @@ from .save import savefig
 ####################
 
 from .new import new
+
+##################################
+## Add media folder to template ##
+##################################
+import os
+_path = __file__.replace('__init__.pyc','').replace('__init__.py','')
+if not os.path.isdir(os.path.join(_path,'templates/pptx/ppt/media')):
+    os.mkdir(os.path.join(_path,'templates/pptx/ppt/media'))
