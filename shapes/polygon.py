@@ -34,14 +34,12 @@ class Polygon(Line):
         '''
         # Get slidesize from matplotlib figure
         slidesize = (mpl_poly.figure.get_figwidth(), mpl_poly.figure.get_figheight())
+        
+        # Get plotting area
+        slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_poly.figure)
 
         # Translate plot data to locations on slide
-        slide_x0 = 0.5*(1-f)*slidesize[0]*POINTSPERINCH
-        slide_x1 = slide_x0 + f*slidesize[0]*POINTSPERINCH
         plot_x0, plot_x1 = mpl_poly.axes.get_xlim()
-
-        slide_y1 = 0.5*(1-f)*slidesize[1]*POINTSPERINCH
-        slide_y0 = slide_y1+f*slidesize[1]*POINTSPERINCH
         plot_y0, plot_y1 = mpl_poly.axes.get_ylim()
         
         mx = (slide_x1-slide_x0)/(plot_x1-plot_x0)

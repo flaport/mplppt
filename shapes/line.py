@@ -48,7 +48,7 @@ class Line(Object):
     def cy(self):
         ''' Total height of the shape '''
         return (np.max(self.shape, axis=0) - np.min(self.shape, axis=0))[1]
-    
+
     def get_adjusted_shape(self):
         '''
         To draw a resize box around the shape, we need to give the coordinates of the
@@ -70,7 +70,6 @@ class Line(Object):
         '''
         # Get slidesize from matplotlib figure
         slidesize = (mpl_line.figure.get_figwidth(), mpl_line.figure.get_figheight())
-        f = cls._mpl_shrink_factor
 
         # Get plotting area
         slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_line.figure)
@@ -78,7 +77,7 @@ class Line(Object):
         # Translate plot data to locations on slide
         plot_x0, plot_x1 = mpl_line.axes.get_xlim()
         plot_y0, plot_y1 = mpl_line.axes.get_ylim()
-        
+
         mx = (slide_x1-slide_x0)/(plot_x1-plot_x0)
         sx = 0.5*slide_x0
         px = sx/mx
@@ -102,7 +101,7 @@ class Line(Object):
         # If object is completely outside plotting area, then we shouldnt show it at all:
         if ((y < slide_y1) | (y > slide_y0) | (x < slide_x0) | (x > slide_x1)).all():
             return None
- 
+
         # Create Line
         line = cls(
             name='mplline_' + random_name(5),
@@ -114,7 +113,7 @@ class Line(Object):
             slidesize=slidesize,
         )
         return line
-        
+
     def xml(self):
         ''' Get Xml Representation of object '''
         xml = self._xml.format(
@@ -140,7 +139,7 @@ class Line(Object):
 
         # first point in shape
         shapespec = '<a:moveTo><a:pt x="{x}" y="{y}"/></a:moveTo>\n'.format(
-            x=int(shape[0][0]*PIXELSPERPOINT), 
+            x=int(shape[0][0]*PIXELSPERPOINT),
             y=int(shape[0][1]*PIXELSPERPOINT),
         )
 
@@ -150,7 +149,7 @@ class Line(Object):
                 x=int(x*PIXELSPERPOINT),
                 y=int(y*PIXELSPERPOINT),
             )
-        
+
         # close shape
         if closed:
             shapespec = shapespec + '<a:close/>\n'
