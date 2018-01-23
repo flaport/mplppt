@@ -29,10 +29,10 @@ def savefig(filename, fig=None, axis=True):
   # Get figure to save
   if fig is None:
     fig = gcf()
-    
+
   # Create ppt group
   p = Group(objects=[])
-  
+
   # Parse mpl objects:
   for obj in findobj(fig):
     # only keep objects that have an axis:
@@ -52,15 +52,15 @@ def savefig(filename, fig=None, axis=True):
       # convert pcolormesh
       if type(obj) is mpl.collections.QuadMesh:
         p += Mesh.from_mpl(obj)
-        
+
   # create a canvas
   # TODO: Create this with less parameters
   canvas = Canvas.from_mpl(fig.axes[0], axis=axis)
   p += canvas
-  
+
   # save powerpoint group
   p.save(filename)
-  
+
   # return powerpoint group
   return p
 
@@ -77,6 +77,9 @@ def picklefig(filename, fig):
 
 def loadpicklefig(filename):
   with open(filename, 'rb') as file:
-    fig, canvas = pickle.load(file, encoding='latin1')
+    try:
+      fig, canvas = pickle.load(file, encoding='latin1')
+    except TypeError:
+      fig, canvas = pickle.load(file)
   fig.canvas = canvas
   return fig
