@@ -1,3 +1,14 @@
+##################
+## Unicode Hack ##
+## For Python 2 ##
+##################
+try:
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+except:
+    pass
+
 ################
 ## Submodules ##
 ################
