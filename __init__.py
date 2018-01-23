@@ -2,11 +2,12 @@
 ## Unicode Hack ##
 ## For Python 2 ##
 ##################
-try:
+
+try: # Python 2
     import sys
     reload(sys)
     sys.setdefaultencoding('utf8')
-except:
+except NameError: # Python 3
     pass
 
 ################
