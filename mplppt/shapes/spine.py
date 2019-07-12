@@ -19,9 +19,9 @@ from ..utils.constants import PIXELSPERPOINT
 class Spine(Line):
     @classmethod
     def from_mpl(cls, mpl_spine):
-        '''
+        """
         Create a line starting from a matplotlib Spine object
-        '''
+        """
         # Get slidesize from matplotlib figure
         slidesize = (mpl_spine.figure.get_figwidth(), mpl_spine.figure.get_figheight())
 
@@ -30,12 +30,12 @@ class Spine(Line):
 
         # Create Line
         spine = cls(
-            name='mplspine_' + random_name(5),
+            name="mplspine_" + random_name(5),
             shape=shape,
-            lw = mpl_spine._linewidth,
-            ec = '000000',
-            fc = None,
-            closed = False,
+            lw=mpl_spine._linewidth,
+            ec="000000",
+            fc=None,
+            closed=False,
             slidesize=slidesize,
         )
         return spine
