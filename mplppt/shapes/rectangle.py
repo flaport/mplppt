@@ -43,10 +43,12 @@ class Rectangle(Object):
         # Get plotting area
         slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_rect.figure)
 
+        rx, ry = mpl_rect.xy
+
         # Translate plot data to locations on slide
         plot_x0, plot_x1 = mpl_rect.axes.get_xlim()
         mx = (slide_x0-slide_x1)/(plot_x0 - plot_x1)
-        x = mx*(mpl_rect._x-plot_x0) + slide_x0
+        x = mx*(rx-plot_x0) + slide_x0
         cx = mx*mpl_rect._width
         if cx < 0:
             x += cx
@@ -54,7 +56,7 @@ class Rectangle(Object):
 
         plot_y0, plot_y1 = mpl_rect.axes.get_ylim()
         my = (slide_y0-slide_y1)/(plot_y0 - plot_y1)
-        y = my*(mpl_rect._y-plot_y0) + slide_y0
+        y = my*(ry-plot_y0) + slide_y0
         cy = my*mpl_rect._height
         if cy < 0:
             y += cy
@@ -63,7 +65,7 @@ class Rectangle(Object):
         # HACK: If an object is partly outside the plotting area, we map the values outside to the
         # margin area (over which the (white?) rectangles of the Canvas will later be drawn)
         # TODO: Implement this
-        
+
         # If object is completely outside plotting area, then we shouldnt show it at all:
         # TODO: Implement this check
 
