@@ -1,3 +1,5 @@
+""" Matplotlib canvas represented as a collection of powerpoint shapes """
+
 #############
 ## Imports ##
 #############
@@ -20,13 +22,23 @@ from ..utils.colors import color2hex
 
 
 class Canvas(Group):
+    """ Draw a canvas around a group of objects """
     def __init__(
         self, x, y, cx, cy, lw=0.8, ec="000000", fc="ffffff", slidesize=(6, 4)
     ):
-        """
-        A canvas draws a rectangle around the plot with linewidth lw and edgecolor ec.
+        """ A canvas draws a rectangle around the plot with linewidth lw and edgecolor ec.
         It also hides the parts of the plot that are outside the drawing region
         by inserting 4 rectangles with facecolor fc.
+
+        Args:
+            x: the x-location of the canvas
+            y: the y-location of the canvas
+            cx: the x-width of the canvas
+            cy: the y-height of the canvas
+            lw: the linewidth to draw the canvas in
+            ec:  the edgecolor to draw the canvas in
+            fc: the facecolor to draw the area outside the canvas in
+            slidesize: the size of the slide to draw the canvas in
 
         NOTE: This object is a bit of a hack, since the canvas should in
         principle be translated automatically from the mpl_figure. Right
@@ -98,7 +110,16 @@ class Canvas(Group):
 
     @classmethod
     def from_mpl(cls, mpl_ax, lw=0.8, ec="000000", fc="ffffff", axis=True):
-        """ Create a canvas starting from a matplotlib axis """
+        """ Create a canvas starting from a matplotlib axis
+        
+        Args:
+            mpl_ax: the matplotlib axis object to draw the canvas from
+            lw: the linewdith to draw the canvas in
+            ec: the edgecolor to draw the canvas in
+            fc: the facecolor to draw the canvas in
+            axis=True: wether to draw the axis ticks and labels.
+         
+        """
 
         # Get slidesize from matplotlib figure
         slidesize = (mpl_ax.figure.get_figwidth(), mpl_ax.figure.get_figheight())

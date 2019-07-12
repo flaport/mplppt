@@ -1,3 +1,5 @@
+""" Python objects representing common powerpoint shapes """
+
 #############
 ## Imports ##
 #############

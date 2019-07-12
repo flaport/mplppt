@@ -1,3 +1,5 @@
+""" Constants for mplppt """
+
 ###############
 ## Constants ##
 ###############

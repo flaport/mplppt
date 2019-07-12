@@ -20,7 +20,14 @@ from .utils.constants import PIXELSPERINCH
 
 
 def new(filename, xml=None, rels=None, slidesize=(6, 4)):
-    """ Creates a new blank powerpoint with a single slide """
+    """ Creates a new blank powerpoint with a single slide 
+    
+    Args:
+        filename: str: the filename of the new pptx file
+        xml: additional xml to insert into the pptx file
+        rels: additional rels to insert into the pptx file
+        slidesize: the slidesize of the slides in the pptx file
+    """
     # check filename
     if filename.endswith(".pptx"):
         filename = filename[:-5]

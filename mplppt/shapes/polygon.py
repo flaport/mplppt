@@ -1,3 +1,6 @@
+""" Powerpoint polygon representation """
+
+
 #############
 ## Imports ##
 #############
@@ -29,20 +32,33 @@ class Polygon(Line):
         fc="eeeeee",
         slidesize=(6, 4),
     ):
-        """ A polygon is nothing more than  a Line, which is always closed. """
+        """ A Polygon is nothing more than a Line which is always closed. 
+    
+        Args:
+            name: the xml name of the polygon
+            shape: the shape of the polygon: a list of tuples
+            lw: the linewidth to draw the polygon in
+            ec: the edgecolor to draw the polygon in
+            fc: the facecolor to draw the polygon in
+            slidesize=(6,4): the slidesize in which to embed the polygon.
+        
+        """
         Line.__init__(
             self, name=name, shape=shape, ec=ec, fc=fc, closed=True, slidesize=slidesize
         )
 
     @classmethod
     def from_mpl(cls, mpl_poly):
-        """
-        Create a polygon starting from a matplotlib Polygon object
+        """ Create a polygon starting from a matplotlib Polygon object
 
-        TODO: The code below gets repeated a lot over the different shapes.
-              Create a method in the Object class that extrapolates the
-              x and y values.
+        Args:
+            mpl_poly: the matplotlib polygon to convert into a ppt polygon
         """
+
+        #TODO: The code below gets repeated a lot over the different shapes.
+        #      Create a method in the Object class that extrapolates the
+        #      x and y values.
+
         # Get slidesize from matplotlib figure
         slidesize = (mpl_poly.figure.get_figwidth(), mpl_poly.figure.get_figheight())
 

@@ -1,3 +1,6 @@
+""" Powerpoint line representations """
+
+
 #############
 ## Imports ##
 #############
@@ -32,6 +35,17 @@ class Line(Object):
         closed=False,
         slidesize=(6, 4),
     ):
+        """ Create a line in powerpoint
+
+        Args:
+            name: the xml name of the line
+            shape: the shape of the line: a list of tuples
+            lw: the linewidth to draw the line in
+            ec: the edgecolor to draw the line in
+            fc: the facecolor to draw the line in
+            closed: wether to close the line or not (connect the last point with the first point of the line)
+            slidesize=(6,4): the slidesize in which to embed the line.
+        """
         Object.__init__(self, name=name, slidesize=slidesize)
         self.shape = np.array(shape)
         self.lw = lw
@@ -61,9 +75,11 @@ class Line(Object):
         return (np.max(self.shape, axis=0) - np.min(self.shape, axis=0))[1]
 
     def get_adjusted_shape(self):
-        """
-        To draw a resize box around the shape, we need to give the coordinates of the
+        """ To draw a resize box around the shape, we need to give the coordinates of the
         shape relative to the the upper left corner of the shape
+
+        Returns:
+            shape: list: the shape of the line relative to the upper left corner
         """
         shape = self.shape.copy()
         shape[:, 0] -= self.x
@@ -72,13 +88,16 @@ class Line(Object):
 
     @classmethod
     def from_mpl(cls, mpl_line):
-        """
-        Create a line starting from a matplotlib Line2D object
+        """ Create a line starting from a matplotlib Line2D object
 
-        TODO: The code below gets repeated a lot over the different shapes.
-              Create a method in the Object class that extrapolates the
-              x and y values.
+        Args:
+            mpl_line: the matplotlib line to convert into a ppt line
         """
+
+        # TODO: The code below gets repeated a lot over the different shapes.
+        #      Create a method in the Object class that extrapolates the
+        #      x and y values.
+
         # Get slidesize from matplotlib figure
         slidesize = (mpl_line.figure.get_figwidth(), mpl_line.figure.get_figheight())
 
@@ -130,7 +149,11 @@ class Line(Object):
         return line
 
     def xml(self):
-        """ Get Xml Representation of object """
+        """ Get the xml representation of the whole object containing the line 
+        
+        Returns:
+            xml: str: the xml representation of the whole object containing the line
+        """
         xml = self._xml.format(
             name=self.name,
             x=int(self.x * PIXELSPERPOINT) + 1,
@@ -145,9 +168,7 @@ class Line(Object):
         return xml
 
     def shapespec(self, shape, closed):
-        """
-        Get the Xml representation of just the shape.
-        """
+        """ Get the xml representation of just the line. """
         # check if shape is empty
         if len(shape) == 0:
             return ""

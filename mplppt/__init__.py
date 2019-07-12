@@ -1,3 +1,7 @@
+""" `mplppt` seeks to implement an alternative `savefig` function for `matplotlib` figures. 
+This `savefig` function saves a `matplotlib` figure with a single axis to a powerpoint 
+presentation with a single slide containing the figure. """
+
 __author__ = "Floris Laporte"
 __version__ = "0.0.0"
 

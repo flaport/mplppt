@@ -22,11 +22,19 @@ from .utils.strings import random_name
 ## The Magic Function ##
 ########################
 
-# This is te function this repository is all about
-
+# This is the function this repository is all about
 
 def savefig(filename, fig=None, axis=True):
-    """ Export a matplotlib figure to a pptx file """
+    """ Export a matplotlib figure to a pptx file 
+    
+    Args:
+        filename: str: the filename of the pptx file to save the matplotlib figure as
+        fig: the figure to convert to a pptx slide. If None, plt.gcf() will be used to get the most recent figure.
+        axis=True: wether to show the axis ticks and labels or not.
+    
+    Returns:
+        group: the mplppt group containing all the objects that were converted from the matplotlib figure.
+    """
     # Get figure to save
     if fig is None:
         fig = gcf()
@@ -39,19 +47,19 @@ def savefig(filename, fig=None, axis=True):
         # only keep objects that have an axis:
         if obj.axes is not None:
             # convert lines:
-            if type(obj) is mpl.lines.Line2D:
+            if isinstance(obj, mpl.lines.Line2D):
                 p += Line.from_mpl(obj)
             # convert rectangles:
-            if type(obj) is mpl.patches.Rectangle:
+            if isinstance(obj, mpl.patches.Rectangle):
                 p += Rectangle.from_mpl(obj)
             # convert polygons
-            if type(obj) is mpl.patches.Polygon:
+            if isinstance(obj, mpl.patches.Polygon):
                 p += Polygon.from_mpl(obj)
             # convert text
-            if type(obj) is mpl.text.Text:
+            if isinstance(obj, mpl.text.Text):
                 p += Text.from_mpl(obj)
             # convert pcolormesh
-            if type(obj) is mpl.collections.QuadMesh:
+            if isinstance(obj, mpl.collections.QuadMesh):
                 p += Mesh.from_mpl(obj)
 
     # create a canvas

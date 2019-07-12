@@ -1,3 +1,6 @@
+""" Matplotlib spine represented as a powerpoint line """
+
+
 #############
 ## Imports ##
 #############
@@ -19,8 +22,11 @@ from ..utils.constants import PIXELSPERPOINT
 class Spine(Line):
     @classmethod
     def from_mpl(cls, mpl_spine):
-        """
-        Create a line starting from a matplotlib Spine object
+        """ Create a line starting from a matplotlib Spine object
+        
+        Args:
+            mpl_spine: the matplotlib spine object to convert to a powerpoint line
+        
         """
         # Get slidesize from matplotlib figure
         slidesize = (mpl_spine.figure.get_figwidth(), mpl_spine.figure.get_figheight())

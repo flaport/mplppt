@@ -1,3 +1,6 @@
+""" Filetype conversions """
+
+
 #############
 ## Imports ##
 #############
@@ -17,7 +20,12 @@ from .utils.contextmanagers import chdir
 
 
 def dir2pptx(dirname, target=None):
-    """ Create ppt file from folder with right ppt structure """
+    """ Create ppt file from folder with right ppt structure 
+    
+    Args:
+        dirname: str: name of the directory to convert to a powerpoint file
+        target=None: the filename of the resulting pptx file
+    """
     # check target
     if target is None:
         target = dirname + ".pptx"
@@ -35,7 +43,12 @@ def dir2pptx(dirname, target=None):
 
 
 def dir2zip(dirname, target=None):
-    """ Create ppt file from folder with right ppt structure """
+    """ Create zip file from folder 
+    
+    Args:
+        dirname: str: name of the directory to convert to a zip file
+        target=None: the filename of the resulting zip file.
+    """
     # check target
     if target is None:
         target = dirname + ".zip"
@@ -53,7 +66,12 @@ def dir2zip(dirname, target=None):
 
 
 def pptx2dir(filename, target=None):
-    """ Create folder from pptx/zip file """
+    """ Create folder from pptx file
+    
+    Args:
+        filename: str: name of the pptx file to unzip into a directory
+        target=None: the filename of the resulting directory
+    """
     # check filename:
     filename, ext = os.path.splitext(filename)
     if ext == "":
@@ -75,15 +93,26 @@ def pptx2dir(filename, target=None):
 
 
 def zip2dir(filename, target=None):
-    """ Create folder from zip file """
+    """ Create folder from zip file
+    
+    Args:
+        filename: str: name of the zip file to unzip into a directory
+        target=None: the filename of the resulting directory
+    """
     # check filename
     filename, ext = os.path.splitext(filename)
     if ext == "":
-        ext = ".pptx"
+        ext = ".zip"
     return pptx2dir(filename + ext, target)
 
 
 def pptx2zip(filename, target=None):
+    """ Create zip file from pptx file
+
+    Args:
+        filename: str: name of the pptx file to convert to a zip file
+        target=None: the filename of the resulting zip file
+    """
     # check filename:
     filename, ext = os.path.splitext(filename)
     if ext == "":
@@ -101,6 +130,12 @@ def pptx2zip(filename, target=None):
 
 
 def zip2pptx(filename, target=None):
+    """ Create pptx file from zip file
+
+    Args:
+        filename: str: name of the zip file to convert to a pptx file
+        target=None: the filename of the resulting pptx file
+    """
     # check filename:
     filename, ext = os.path.splitext(filename)
     if ext == "":

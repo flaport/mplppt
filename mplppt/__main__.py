@@ -1,3 +1,5 @@
+""" Some basic undocumented CLI behavior. Have fun! """
+
 if __name__ == "__main__":
     import os
     import sys

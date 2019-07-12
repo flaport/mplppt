@@ -1,3 +1,6 @@
+""" matplotlib figure tools """
+
+
 #############
 ## Imports ##
 #############
@@ -23,6 +26,14 @@ visualized = {}
 
 
 def get_plotting_area(fig):
+    """ get area which is visualized by matplotlib
+
+    Args:
+        fig: matplotlib figure to find the area for
+    
+    Returns:
+        xmin, xmax, ymin, ymax: the bounds of the matplotlib figure
+    """
     global visualized
     if fig not in visualized:
         # HACK: To get info about spine locations, the axis needs to be visualized first.

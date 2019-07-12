@@ -1,3 +1,6 @@
+""" Powerpoint text representations """
+
+
 #############
 ## Imports ##
 #############
@@ -38,6 +41,21 @@ class Text(Object):
         va="c",
         slidesize=(6, 4),
     ):
+        """ create a text box in powerpoint
+
+        Args:
+            text: str: the text to place in a powerpoint textbox
+            x: the x-location of the textbox
+            y: the y-location of the textbox
+            cx: the x-width of the textbox
+            cy: the y-height of the textbox
+            size: the fontsize of the text in the textbox
+            font: the font of the text in the textbox
+            color: the color of the text in the textbox
+            ha: the horizontal alignment of the text in the textbox
+            va: the vertical alignment of the text in the textbox
+            slidesize: the size of the slide to place the textbox into
+        """
         Object.__init__(self, name="", slidesize=slidesize)
         self.text = text
         self._x = x
@@ -53,7 +71,7 @@ class Text(Object):
 
     @property
     def x(self):
-        """ change the x location of the text according to its alignment specification """
+        """ get the effective x-location of the text adjusted for its horizontal alignment """
         if self.ha == "c":
             return self._x - 0.5 * self.cx
         if self.ha == "r":
@@ -62,7 +80,7 @@ class Text(Object):
 
     @property
     def y(self):
-        """ change the y location of the text according to its alignment specification """
+        """ get the effective y-location of the text, adjusted for its vertical alignment """
         if self.va == "c":
             return self._y - 0.5 * self.cy
         if self.va == "b":
@@ -71,13 +89,17 @@ class Text(Object):
 
     @classmethod
     def from_mpl(cls, mpl_text):
-        """
-        Create a text box starting from a matplotlib Text object
+        """ Create a text box starting from a matplotlib Text object
 
-        TODO: The code below gets repeated a lot over the different shapes.
-              Create a method in the Object class that extrapolates the
-              x and y values.
+        Args:
+            mpl_text: the matplotlib text to convert into powerpoint text.
+        
         """
+
+        # TODO: The code below gets repeated a lot over the different shapes.
+        #       Create a method in the Object class that extrapolates the
+        #       x and y values.
+
         # Get slidesize from matplotlib figure
         slidesize = (mpl_text.figure.get_figwidth(), mpl_text.figure.get_figheight())
         f = cls._mpl_shrink_factor
@@ -127,7 +149,11 @@ class Text(Object):
         return text
 
     def xml(self):
-        """ Get xml representation of the text """
+        """ Get xml representation of the text 
+        
+        Returns:
+            xml: str: the xml representation of the text
+        """
         if self.text.replace(" ", "").replace("\n", "") == "":
             return ""  # Return empty string, if no characters are written
 

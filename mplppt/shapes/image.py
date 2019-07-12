@@ -1,3 +1,5 @@
+""" Powerpoint image representations """
+
 #############
 ## Imports ##
 #############
@@ -22,9 +24,20 @@ from ..utils.mpl import get_plotting_area
 
 
 class Image(Object):
-    """ An Image """
+    """ A Powerpoint Image """
 
     def __init__(self, source, name="", x=0, y=0, cx=None, cy=None, slidesize=(6, 4)):
+        """ Create a powerpoint image
+
+        Args:
+            source: the filename of the image to add to the powerpoint slide
+            name: the xml-name for the image
+            x=0: the x-location of the image
+            y=0: the y-location of the image
+            cx=0: the width of the image
+            cy=0: the height of the image
+            slidesize=(6,8): the slidesize to put the image in
+        """
         name = ".".join(source.split(".")[:-1]) if name == "" else name
         Object.__init__(self, name=name, slidesize=slidesize)
         self.array = imread(source)
@@ -39,13 +52,25 @@ class Image(Object):
         self._xml = IMAGE
 
     def rels(self):
-        """ Get relationship representation of the image together with the source location and the target location """
+        """ The relationship representation of the image 
+        
+        This relationship information contains the source location of the image, 
+        as well as the xml schema used to visualize it.
+
+        Returns:
+            rels: list: the list of relationships for the image.
+        
+        """
         rels = '<Relationship Id="{id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/{target}"/>'
         rels = rels.format(id=self.id, target=self.target)
         return [(rels, self.array, self.target)]
 
     def xml(self):
-        """ Get xml representation of the rectangle """
+        """ Get xml representation of the image 
+        
+        Returns:
+            xml: the xml representation for the image
+        """
         xml = self._xml.format(
             name=self.name,
             x=int(self.x * PIXELSPERPOINT) + 1,
@@ -58,10 +83,15 @@ class Image(Object):
 
 
 class Mesh(Image):
-    """ Matplotlib QuadMesh (plt.pcolormesh) """
+    """ Matplotlib QuadMesh (plt.pcolormesh) representated as a powerpoint image """
 
     @classmethod
     def from_mpl(cls, mpl_mesh):
+        """ create a Mesh from a matplotlib QuadMesh object
+
+        Args:
+            mpl_mesh: the matplotlib QuadMesh object to represent as a powerpoint image
+        """
         xlim = mpl_mesh.axes.get_xlim()
         ylim = mpl_mesh.axes.get_ylim()
         X = mpl_mesh._coordinates[:-1, :-1, 0]

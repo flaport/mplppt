@@ -1,3 +1,6 @@
+""" Powerpoint rectangle representation """
+
+
 #############
 ## Imports ##
 #############
@@ -31,6 +34,19 @@ class Rectangle(Object):
         fc="eeeeee",
         slidesize=(6, 4),
     ):
+        """ Create a powerpoint rectangle
+
+        Args:
+            name: the xml-name for the rectangle
+            x=0: the x-location of the rectangle
+            y=0: the y-location of the rectangle
+            cx=0: the width of the rectangle
+            cy=0: the height of the rectangle
+            lw: the linewidth to draw the rectangle in
+            ec: the edgecolor to draw the rectangle in
+            fc: the facecolor to draw the rectangle in
+            slidesize=(6,8): the slidesize to put the rectangle in
+        """
         Object.__init__(self, name=name, slidesize=slidesize)
         self.x = x
         self.y = y
@@ -43,13 +59,16 @@ class Rectangle(Object):
 
     @classmethod
     def from_mpl(cls, mpl_rect):
-        """
-        Create a rectangle starting from a matplotlib Rectangle object
+        """ Create a rectangle starting from a matplotlib Rectangle object
 
-        TODO: The code below gets repeated a lot over the different shapes.
-              Create a method in the Object class that extrapolates the
-              x and y values.
+        Args:
+            mpl_rect: the matplotlib rectangle to convert to a powerpoint rectangle
         """
+
+        # TODO: The code below gets repeated a lot over the different shapes.
+        #       Create a method in the Object class that extrapolates the
+        #       x and y values.
+
         # Get slidesize from matplotlib figure
         slidesize = (mpl_rect.figure.get_figwidth(), mpl_rect.figure.get_figheight())
 
