@@ -3,7 +3,7 @@ This `savefig` function saves a `matplotlib` figure with a single axis to a powe
 presentation with a single slide containing the figure. """
 
 __author__ = "Floris Laporte"
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 
 ##################
 ## Unicode Hack ##
