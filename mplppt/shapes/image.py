@@ -52,22 +52,22 @@ class Image(Object):
         self._xml = IMAGE
 
     def rels(self):
-        """ The relationship representation of the image 
-        
-        This relationship information contains the source location of the image, 
+        """ The relationship representation of the image
+
+        This relationship information contains the source location of the image,
         as well as the xml schema used to visualize it.
 
         Returns:
             rels: list: the list of relationships for the image.
-        
+
         """
         rels = '<Relationship Id="{id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/{target}"/>'
         rels = rels.format(id=self.id, target=self.target)
         return [(rels, self.array, self.target)]
 
     def xml(self):
-        """ Get xml representation of the image 
-        
+        """ Get xml representation of the image
+
         Returns:
             xml: the xml representation for the image
         """
@@ -99,7 +99,8 @@ class Mesh(Image):
         xmin, xmax = max(np.min(X), min(xlim)), min(np.max(X), max(xlim))
         ymin, ymax = max(np.min(Y), min(ylim)), min(np.max(Y), max(ylim))
 
-        Z = mpl_mesh._A.reshape(mpl_mesh._meshHeight, mpl_mesh._meshWidth).data
+        H, W, *_ = mpl_mesh._coordinates.shape
+        Z = mpl_mesh._A.reshape(H-1, W-1).data
 
         # Get plotting area
         slide_x0, slide_x1, slide_y1, slide_y0 = get_plotting_area(mpl_mesh.figure)
