@@ -32,8 +32,8 @@ class Polygon(Line):
         fc="eeeeee",
         slidesize=(6, 4),
     ):
-        """ A Polygon is nothing more than a Line which is always closed. 
-    
+        """ A Polygon is nothing more than a Line which is always closed.
+
         Args:
             name: the xml name of the polygon
             shape: the shape of the polygon: a list of tuples
@@ -41,7 +41,7 @@ class Polygon(Line):
             ec: the edgecolor to draw the polygon in
             fc: the facecolor to draw the polygon in
             slidesize=(6,4): the slidesize in which to embed the polygon.
-        
+
         """
         Line.__init__(
             self, name=name, shape=shape, ec=ec, fc=fc, closed=True, slidesize=slidesize
@@ -77,7 +77,10 @@ class Polygon(Line):
         sy = 0.5 * slide_y0
         py = sy / my
 
-        x, y = mpl_poly._get_xy().T
+        try:
+            x, y = mpl_poly.get_xy().T
+        except AttributeError:
+            x, y = mpl_poly._get_xy().T
 
         x = interp1d(
             [plot_x0, plot_x1], [slide_x0, slide_x1], fill_value="extrapolate"
